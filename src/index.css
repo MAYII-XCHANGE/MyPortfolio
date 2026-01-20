@@ -2,23 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Portfolio Design System - Modern Dark Theme with Vibrant Accents */
+/* Portfolio Design System - Modern Theme with Dark/Light Support */
 
 @layer base {
   :root {
-    /* Dark theme base */
+    /* Light theme base (default) - Professional & Muted */
+    --background: 0 0% 100%;
+    --foreground: 210 15% 25%;
+
+    /* Card system */
+    --card: 210 20% 97%;
+    --card-foreground: 210 15% 25%;
+
+    /* Interactive elements */
+    --popover: 210 15% 95%;
+    --popover-foreground: 210 15% 25%;
+
+    /* Brand colors - Muted Professional Blue */
+    --primary: 212 45% 52%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 212 45% 62%;
+
+    /* Secondary - Muted Gray-Blue */
+    --secondary: 210 25% 92%;
+    --secondary-foreground: 210 15% 25%;
+
+    /* Muted */
+    --muted: 210 20% 90%;
+    --muted-foreground: 210 12% 50%;
+
+    /* Accent - Muted Professional Green */
+    --accent: 160 35% 52%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 160 35% 62%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 50% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* UI elements */
+    --border: 210 20% 90%;
+    --input: 210 20% 97%;
+    --ring: 212 45% 52%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(212 45% 52%),
+      hsl(212 45% 62%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(160 35% 52%),
+      hsl(160 35% 62%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(212 45% 52%) 0%,
+      hsl(160 35% 52%) 100%
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      hsl(210 20% 98%) 0%,
+      hsl(210 20% 95%) 100%
+    );
+
+    /* Shadows - Professional subtle */
+    --shadow-glow: 0 0 25px hsl(212 45% 52% / 0.12);
+    --shadow-accent-glow: 0 0 25px hsl(160 35% 52% / 0.12);
+    --shadow-elegant: 0 8px 24px hsl(210 15% 25% / 0.07);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 210 15% 25%;
+    --sidebar-primary: 212 45% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 92%;
+    --sidebar-accent-foreground: 210 15% 25%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 212 45% 52%;
+  }
+
+  .dark {
+    /* Dark theme */
     --background: 220 26% 8%;
     --foreground: 210 40% 98%;
 
-    /* Card system */
     --card: 220 26% 10%;
     --card-foreground: 210 40% 98%;
 
-    /* Interactive elements */
     --popover: 220 26% 12%;
     --popover-foreground: 210 40% 98%;
 
-    /* Brand colors */
     --primary: 225 100% 65%;
     --primary-foreground: 220 26% 8%;
     --primary-glow: 225 100% 75%;
@@ -33,19 +116,13 @@
     --accent-foreground: 220 26% 8%;
     --accent-glow: 180 100% 70%;
 
-    /* Status colors */
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --success: 142 76% 45%;
-    --success-foreground: 210 40% 98%;
-
-    /* UI elements */
     --border: 220 26% 18%;
     --input: 220 26% 15%;
     --ring: 225 100% 65%;
 
-    /* Gradients */
     --gradient-primary: linear-gradient(
       135deg,
       hsl(225 100% 65%),
@@ -67,62 +144,10 @@
       hsl(220 26% 12%) 100%
     );
 
-    /* Shadows */
     --shadow-glow: 0 0 40px hsl(225 100% 65% / 0.3);
     --shadow-accent-glow: 0 0 40px hsl(180 100% 60% / 0.3);
     --shadow-elegant: 0 20px 60px -10px hsl(220 26% 4% / 0.8);
 
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    --radius: 1rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -190,6 +215,32 @@
     -webkit-text-fill-color: transparent;
   }
 
+  /* Professional Button Styles */
+  .btn-professional {
+    @apply font-semibold transition-all duration-300 shadow-sm hover:shadow-md active:shadow-xs;
+  }
+
+  .btn-primary-light {
+    @apply bg-primary text-primary-foreground hover:bg-blue-700 active:bg-blue-800;
+  }
+
+  .btn-accent-light {
+    @apply bg-accent text-accent-foreground hover:bg-green-600 active:bg-green-700;
+  }
+
+  /* Icon Styling for Light Mode - Subtle */
+  .icon-light {
+    @apply text-foreground transition-colors duration-300;
+  }
+
+  .icon-light:hover {
+    @apply text-primary;
+  }
+
+  .icon-accent-light {
+    @apply text-accent transition-colors duration-300;
+  }
+
   /* Hover animations */
   .hover-lift {
     transition: var(--transition-smooth);
@@ -206,6 +257,16 @@
 
   .hover-glow:hover {
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Enhanced hover effects for light mode */
+  :root .hover-lift-light:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px hsl(217 92% 48% / 0.15);
+  }
+
+  :root .hover-scale:hover {
+    transform: scale(1.02);
   }
 
   /* Scroll animations */
@@ -295,7 +356,7 @@
     box-shadow: var(--shadow-glow);
   }
   50% {
-    box-shadow: 0 0 60px hsl(225 100% 65% / 0.5);
+    box-shadow: 0 0 60px hsl(217 92% 48% / 0.3);
   }
 }
 
