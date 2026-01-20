@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useState } from "react";
 import {
   ExternalLink,
   Github,
@@ -17,6 +18,8 @@ const Projects = () => {
     threshold: 0.3,
     triggerOnce: true,
   });
+
+  const [imageIndexes, setImageIndexes] = useState({});
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -43,10 +46,39 @@ const Projects = () => {
       company: "Nova Bank",
       description:
         "Built the complete frontend for enabling seamless registration of merchants for POS terminals.",
-      image: "/api/placeholder/600/400",
+      image: new URL("../assets/POS Portal Screenshot.png", import.meta.url).href,
+      images: [
+        new URL("../assets/TMS dashboard shot.png", import.meta.url).href,
+        new URL("../assets/POS Portal Screenshot.png", import.meta.url).href,
+      ],
       technologies: [
         "React.js",
         "TypeScript",
+        "Tailwind CSS",
+        "REST APIs",
+      ],
+      features: [
+        "Intuitive multi-step registration flow",
+        "Real-time form validation",
+        "Responsive design for all devices",
+      ],
+      status: "Live",
+      type: "Banking Platform",
+      icon: <Globe className="w-6 h-6" />,
+    },
+    {
+      title: "Fixed Asset Management Portal",
+      company: "Nova Bank",
+      description:
+        "",
+      image: new URL("../assets/Dash Screenshot.png", import.meta.url).href,
+      images: [
+        new URL("../assets/FAMS Dashboard.png", import.meta.url).href,
+        new URL("../assets/fams details dash view.png", import.meta.url).href,
+        new URL("../assets/FAMS Screenshot.png", import.meta.url).href,
+      ],
+      technologies: [
+        "React.js",
         "Tailwind CSS",
         "REST APIs",
       ],
@@ -63,11 +95,16 @@ const Projects = () => {
       title: "Compliance Service Desk Portal",
       company: "Nova Bank",
       description:
-        "Built the complete frontend for enabling seamless",
-      image: "/api/placeholder/600/400",
+        "",
+       image: new URL("../assets/comp desk front.png", import.meta.url).href,
+      images: [
+        new URL("../assets/comp desk dashboard.png", import.meta.url).href,
+        new URL("../assets/comp desk inq.png", import.meta.url).href,
+        new URL("../assets/comp desk front.png", import.meta.url).href,
+      ],
       technologies: [
         "React.js",
-        "TypeScript",
+        "Java",
         "Tailwind CSS",
         "REST APIs",
       ],
@@ -85,10 +122,13 @@ const Projects = () => {
       company: "Nova Bank",
       description:
         "Developed internal tool for managing referral programs, improving operational efficiency and user engagement tracking.",
-      image: "/api/placeholder/600/400",
+      image: new URL("../assets/Ref-front.png", import.meta.url).href,
+      images: [
+        new URL("../assets/Ref-front.png", import.meta.url).href,
+        new URL("../assets/ref-dash.png", import.meta.url).href,
+      ],
       technologies: [
         "React.js",
-        "TypeScript",
         "Material UI",
         "Chart.js",
         "REST APIs",
@@ -108,7 +148,10 @@ const Projects = () => {
       company: "Nova Bank",
       description:
         "Built comprehensive visitor management system for improving office operations and security protocols.",
-      image: "/api/placeholder/600/400",
+      image: new URL("../assets/", import.meta.url).href,
+      images: [
+        new URL("../assets/", import.meta.url).href,
+      ],
       technologies: [
         "React.js",
         "TypeScript",
@@ -167,16 +210,44 @@ const Projects = () => {
                 <Card className="gradient-card border-0 shadow-elegant hover-lift overflow-hidden lg:flex-1">
                   <CardContent className="p-0">
                     {/* Project Image */}
-                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-accent mb-4">{project.icon}</div>
-                        <div className="text-4xl sm:text-6xl font-display font-bold text-gradient-primary opacity-50">
-                          {project.title.split(" ")[0]}
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          {project.type}
-                        </p>
-                      </div>
+                    <div 
+                      className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden group"
+                      onMouseEnter={() => {
+                        if (project.images && project.images.length > 0) {
+                          const interval = setInterval(() => {
+                            setImageIndexes((prev) => ({
+                              ...prev,
+                              [project.title]: ((prev[project.title] || 0) + 1) % project.images.length,
+                            }));
+                          }, 2000);
+                          setImageIndexes((prev) => ({
+                            ...prev,
+                            [`${project.title}-interval`]: interval,
+                          }));
+                        }
+                      }}
+                      onMouseLeave={() => {
+                        const interval = imageIndexes[`${project.title}-interval`];
+                        if (interval) {
+                          clearInterval(interval);
+                          setImageIndexes((prev) => {
+                            const newIndexes = { ...prev };
+                            delete newIndexes[`${project.title}-interval`];
+                            newIndexes[project.title] = 0;
+                            return newIndexes;
+                          });
+                        }
+                      }}
+                    >
+                      <img 
+                        src={
+                          project.images 
+                            ? project.images[imageIndexes[project.title] || 0]
+                            : project.image
+                        }
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-opacity duration-300"
+                      />
                     </div>
                   </CardContent>
                 </Card>
