@@ -1,7 +1,21 @@
 import jsPDF from "jspdf";
 
+const PAGE_HEIGHT = 297; // A4 height in mm
+const PAGE_WIDTH = 210;  // A4 width in mm
+const MARGIN = 12;
+const MAX_Y = PAGE_HEIGHT - MARGIN;
+
+const addNewPage = (doc: jsPDF, yPos: number) => {
+  if (yPos > MAX_Y) {
+    doc.addPage();
+    return MARGIN;
+  }
+  return yPos;
+};
+
 export const generateCV = () => {
   const doc = new jsPDF();
+  let yPos = MARGIN;
 
   // Set document properties
   doc.setProperties({
@@ -12,39 +26,46 @@ export const generateCV = () => {
   });
 
   // Header
-  doc.setFontSize(24);
+  doc.setFontSize(20);
   doc.setFont("helvetica", "bold");
-  doc.text("MAYOWA OYENIRAN", 20, 20);
+  doc.text("MAYOWA OYENIRAN", MARGIN, yPos);
+  yPos += 8;
 
-  doc.setFontSize(12);
+  doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  doc.text("Application Developer", 20, 30);
+  doc.text("Application Developer", MARGIN, yPos);
+  yPos += 7;
 
   // Contact Information
-  doc.setFontSize(10);
-  doc.text("Victoria Island, Lagos State, Nigeria", 20, 40);
-  doc.text("+234 905 977 3535", 20, 45);
-  doc.text("oyeniranmayowavictor43@gmail.com", 20, 50);
+  doc.setFontSize(9);
+  doc.text("Victoria Island, Lagos State, Nigeria | +234 905 977 3535 | oyeniranmayowavictor43@gmail.com", MARGIN, yPos);
+  yPos += 8;
 
   // Objective
-  doc.setFontSize(14);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text("OBJECTIVE", 20, 70);
-  doc.setFontSize(10);
+  doc.text("OBJECTIVE", MARGIN, yPos);
+  yPos += 6;
+  
+  doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
   const objective =
     "I am a dedicated Application Developer committed to creating user-friendly, responsive web applications. With a strong focus on delivering seamless and intuitive user experiences, I combine innovative design with efficient coding practices.";
-  const splitObjective = doc.splitTextToSize(objective, 170);
-  doc.text(splitObjective, 20, 80);
+  const splitObjective = doc.splitTextToSize(objective, PAGE_WIDTH - 2 * MARGIN);
+  doc.text(splitObjective, MARGIN, yPos);
+  yPos += splitObjective.length * 4 + 3;
+  yPos = addNewPage(doc, yPos);
+  yPos += 2;
 
   // Skills
-  doc.setFontSize(14);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text("TECHNICAL SKILLS", 20, 105);
-  doc.setFontSize(10);
+  doc.text("TECHNICAL SKILLS", MARGIN, yPos);
+  yPos += 6;
+  
+  doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
 
-  let yPos = 115;
   const skillsData = [
     "Frontend: HTML5, CSS3, SASS, Tailwind CSS, Bootstrap, Material UI, React (Styled Components)",
     "JavaScript: React.js, Vue.js, TypeScript, Java",
@@ -54,16 +75,19 @@ export const generateCV = () => {
   ];
 
   skillsData.forEach((skill) => {
-    const splitSkill = doc.splitTextToSize(skill, 170);
-    doc.text(splitSkill, 25, yPos);
-    yPos += splitSkill.length * 5 + 3;
+    yPos = addNewPage(doc, yPos);
+    const splitSkill = doc.splitTextToSize(skill, PAGE_WIDTH - 2 * MARGIN - 3);
+    doc.text(splitSkill, MARGIN + 3, yPos);
+    yPos += splitSkill.length * 3.5 + 1.5;
   });
+  yPos += 2;
 
   // Work Experience
-  doc.setFontSize(14);
+  yPos = addNewPage(doc, yPos);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text("WORK EXPERIENCE", 20, yPos + 10);
-  yPos += 20;
+  doc.text("WORK EXPERIENCE", MARGIN, yPos);
+  yPos += 6;
 
   const experiences = [
     {
@@ -111,38 +135,52 @@ export const generateCV = () => {
   ];
 
   experiences.forEach((exp) => {
-    doc.setFontSize(12);
+    yPos = addNewPage(doc, yPos);
+    doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
-    doc.text(exp.title, 20, yPos);
-    doc.setFontSize(10);
+    doc.text(exp.title, MARGIN, yPos);
+    yPos += 4;
+    
+    doc.setFontSize(9);
     doc.setFont("helvetica", "normal");
-    doc.text(`${exp.company} (${exp.period})`, 20, yPos + 5);
+    doc.text(`${exp.company} (${exp.period})`, MARGIN, yPos);
+    yPos += 4;
 
-    yPos += 12;
     exp.achievements.forEach((achievement) => {
-      const splitAchievement = doc.splitTextToSize(`• ${achievement}`, 170);
-      doc.text(splitAchievement, 25, yPos);
-      yPos += splitAchievement.length * 4 + 2;
+      yPos = addNewPage(doc, yPos);
+      const splitAchievement = doc.splitTextToSize(`• ${achievement}`, PAGE_WIDTH - 2 * MARGIN - 3);
+      doc.text(splitAchievement, MARGIN + 3, yPos);
+      yPos += splitAchievement.length * 3.5 + 1;
     });
-    yPos += 5;
+    yPos += 2;
   });
+  yPos += 2;
 
   // Education
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("EDUCATION", 20, yPos + 5);
+  yPos = addNewPage(doc, yPos);
   doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  doc.text("EDUCATION", MARGIN, yPos);
+  yPos += 6;
+  
+  doc.setFontSize(11);
   doc.setFont("helvetica", "bold");
   doc.text(
     "Bachelor of Engineering (B.Eng.) in Computer Engineering",
-    20,
-    yPos + 15
+    MARGIN,
+    yPos
   );
-  doc.setFontSize(10);
+  yPos += 5;
+  
+  doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
-  doc.text("Ekiti State University (EKSU)", 20, yPos + 22);
-  doc.text("Ado-Ekiti, Ekiti State, Nigeria (2016-2023)", 20, yPos + 27);
-  doc.text("Second Class Upper", 20, yPos + 32);
+  doc.text("Ekiti State University (EKSU)", MARGIN, yPos);
+  yPos += 4;
+  
+  doc.text("Ado-Ekiti, Ekiti State, Nigeria (2016-2023)", MARGIN, yPos);
+  yPos += 4;
+  
+  doc.text("Second Class Upper", MARGIN, yPos);
 
   // Save the PDF
   doc.save("Mayowa_Oyeniran_CV.pdf");

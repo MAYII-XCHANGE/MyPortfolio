@@ -70,7 +70,7 @@ const Projects = () => {
       title: "Fixed Asset Management Portal",
       company: "Nova Bank",
       description:
-        "",
+        "A comprehensive asset management system for tracking and managing the bank's fixed assets efficiently.",
       image: new URL("../assets/Dash Screenshot.png", import.meta.url).href,
       images: [
         new URL("../assets/FAMS Dashboard.png", import.meta.url).href,
@@ -83,9 +83,9 @@ const Projects = () => {
         "REST APIs",
       ],
       features: [
-        "Intuitive multi-step registration flow",
-        "Real-time form validation",
-        "Responsive design for all devices",
+        "Multi-step asset registration workflow for asset onboarding",
+        "Real-time form validation and automated asset tag generation",
+        "Asset depreciation tracking dashboard and history logs",
       ],
       status: "Live",
       type: "Banking Platform",
@@ -95,7 +95,7 @@ const Projects = () => {
       title: "Compliance Service Desk Portal",
       company: "Nova Bank",
       description:
-        "",
+        "An internal tool for managing compliance requests, improving operational efficiency and user engagement tracking.",
        image: new URL("../assets/comp desk front.png", import.meta.url).href,
       images: [
         new URL("../assets/comp desk dashboard.png", import.meta.url).href,
@@ -109,9 +109,9 @@ const Projects = () => {
         "REST APIs",
       ],
       features: [
-        "Intuitive multi-step registration flow",
-        "Real-time form validation",
-        "Responsive design for all devices",
+        "Intuitive multi-step request submission workflow",
+        "Real-time form validation and status tracking",
+        "compliance staff SLA tracking dashboard",
       ],
       status: "Live",
       type: "Banking Platform",
