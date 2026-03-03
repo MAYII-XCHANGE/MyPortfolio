@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Code, Palette, Zap, Users, Target, Lightbulb } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import mayOye from "@/assets/mayOye.jpg";
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -47,6 +48,7 @@ const About = () => {
       items: [
         "React.js",
         "Vue.js",
+        "Angular",
         "TypeScript",
       ],
     },
@@ -120,16 +122,32 @@ const About = () => {
           {/* Bio Section */}
           <motion.div variants={itemVariants} className="mb-16">
             <Card className="gradient-card border-0 shadow-elegant">
-              <CardContent className="p-8">
-                <p className="text-lg leading-relaxed text-foreground/90">
-                  I am a dedicated frontend developer committed to creating
-                  user-friendly, responsive web applications. With a strong
-                  focus on delivering seamless and intuitive user experiences, I
-                  combine innovative design with efficient coding practices. By
-                  adhering to usability and accessibility standards, I ensure
-                  that the applications I build are engaging and accessible to
-                  all users.
-                </p>
+              <CardContent className="p-6 sm:p-8">
+                <div className="grid lg:grid-cols-[280px_1fr] gap-6 sm:gap-8 items-start">
+                  <div className="w-full max-w-[320px] mx-auto lg:mx-0">
+                    <div className="aspect-[4/5] overflow-hidden rounded-xl border border-border/50 bg-muted">
+                      <img
+                        src={mayOye}
+                        alt="Mayowa Oyeniran"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-lg leading-relaxed text-foreground/90">
+                      I am a dedicated frontend developer committed to creating
+                      user-friendly, responsive web applications. With a strong
+                      focus on delivering seamless and intuitive user
+                      experiences, I combine innovative design with efficient
+                      coding practices. By adhering to usability and
+                      accessibility standards, I ensure that the applications I
+                      build are engaging and accessible to all users.
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>

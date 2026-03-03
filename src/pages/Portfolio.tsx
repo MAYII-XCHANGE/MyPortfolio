@@ -1,10 +1,12 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Contact from "@/components/Contact";
+
+const About = lazy(() => import("@/components/About"));
+const Projects = lazy(() => import("@/components/Projects"));
+const Experience = lazy(() => import("@/components/Experience"));
+const Contact = lazy(() => import("@/components/Contact"));
 
 const Portfolio = () => {
   return (
@@ -17,10 +19,12 @@ const Portfolio = () => {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
+        <Suspense fallback={null}>
+          <About />
+          <Projects />
+          <Experience />
+          <Contact />
+        </Suspense>
       </main>
     </motion.div>
   );

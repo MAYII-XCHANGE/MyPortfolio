@@ -48,8 +48,8 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       label: "Phone",
-      value: "+234 905 977 3535",
-      href: "tel:+2349059773535",
+      value: "+234 905 977 3535 / +234 706 345 4115",
+      href: "tel:+234 905 977 3535 / +234 706 345 4115",
       color: "text-primary",
     },
     {

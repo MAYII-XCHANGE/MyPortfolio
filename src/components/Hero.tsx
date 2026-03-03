@@ -125,7 +125,25 @@ const Hero = () => {
             </div>
             <div className="flex items-center justify-center gap-2">
               <Phone className="w-4 h-4 text-accent" />
-              <span>+234 905 977 3535</span>
+              <span>
+                <a
+                  href="https://wa.me/2349059773535"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  +234 905 977 3535
+                </a>{" "}
+                /{" "}
+                <a
+                  href="https://wa.me/2347063454115"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  +234 706 345 4115
+                </a>
+              </span>
             </div>
             <div className="flex items-center justify-center gap-2">
               <Mail className="w-4 h-4 text-accent" />

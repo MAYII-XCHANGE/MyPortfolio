@@ -15,7 +15,8 @@ import { Badge } from "@/components/ui/badge";
 
 const Projects = () => {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.1,
+    rootMargin: "200px 0px",
     triggerOnce: true,
   });
 
@@ -26,8 +27,8 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        duration: 0.6,
+        staggerChildren: 0.06,
+        duration: 0.4,
       },
     },
   };
@@ -40,23 +41,41 @@ const Projects = () => {
     },
   };
 
+  const fallbackImage = "/placeholder.svg";
+
   const projects = [
+    {
+      title: "FeyRide Website",
+      company: "BexTech Engineering",
+      description:
+        "Developed a responsive ride-sharing platform website with clear service flows, fast page performance, and mobile-first UI to help users easily discover, book, and engage with FeyRide services.",
+      image: fallbackImage,
+      images: [
+        new URL("../assets/FeyRide_1.jpg", import.meta.url).href,
+        new URL("../assets/FeyRide_2.jpg", import.meta.url).href,
+      ],
+      technologies: ["React.js", "TypeScript", "Tailwind CSS"],
+      features: [
+        "Live driver tracking on map with ETA updates",
+        "Secure card/wallet payments with trip receipts",
+        "In-app ride history, saved locations, and support chat",
+      ],
+      status: "Live",
+      type: "Ride-Sharing Platform",
+      icon: <Globe className="w-6 h-6" />,
+    },
     {
       title: "Terminal Management System (TMS)",
       company: "Nova Bank",
       description:
         "Built the complete frontend for enabling seamless registration of merchants for POS terminals.",
-      image: new URL("../assets/POS Portal Screenshot.png", import.meta.url).href,
+      image: new URL("../assets/POS Portal Screenshot.png", import.meta.url)
+        .href,
       images: [
         new URL("../assets/TMS dashboard shot.png", import.meta.url).href,
         new URL("../assets/POS Portal Screenshot.png", import.meta.url).href,
       ],
-      technologies: [
-        "React.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "REST APIs",
-      ],
+      technologies: ["React.js", "TypeScript", "Tailwind CSS", "REST APIs"],
       features: [
         "Intuitive multi-step registration flow",
         "Real-time form validation",
@@ -77,11 +96,7 @@ const Projects = () => {
         new URL("../assets/fams details dash view.png", import.meta.url).href,
         new URL("../assets/FAMS Screenshot.png", import.meta.url).href,
       ],
-      technologies: [
-        "React.js",
-        "Tailwind CSS",
-        "REST APIs",
-      ],
+      technologies: ["React.js", "Tailwind CSS", "REST APIs"],
       features: [
         "Multi-step asset registration workflow for asset onboarding",
         "Real-time form validation and automated asset tag generation",
@@ -91,23 +106,18 @@ const Projects = () => {
       type: "Banking Platform",
       icon: <Globe className="w-6 h-6" />,
     },
-     {
+    {
       title: "Compliance Service Desk Portal",
       company: "Nova Bank",
       description:
         "An internal tool for managing compliance requests, improving operational efficiency and user engagement tracking.",
-       image: new URL("../assets/comp desk front.png", import.meta.url).href,
+      image: new URL("../assets/comp desk front.png", import.meta.url).href,
       images: [
         new URL("../assets/comp desk dashboard.png", import.meta.url).href,
         new URL("../assets/comp desk inq.png", import.meta.url).href,
         new URL("../assets/comp desk front.png", import.meta.url).href,
       ],
-      technologies: [
-        "React.js",
-        "Java",
-        "Tailwind CSS",
-        "REST APIs",
-      ],
+      technologies: ["React.js", "Java", "Tailwind CSS", "REST APIs"],
       features: [
         "Intuitive multi-step request submission workflow",
         "Real-time form validation and status tracking",
@@ -127,12 +137,7 @@ const Projects = () => {
         new URL("../assets/Ref-front.png", import.meta.url).href,
         new URL("../assets/ref-dash.png", import.meta.url).href,
       ],
-      technologies: [
-        "React.js",
-        "Material UI",
-        "Chart.js",
-        "REST APIs",
-      ],
+      technologies: ["React.js", "Material UI", "Chart.js", "REST APIs"],
       features: [
         "Referral tracking dashboard",
         "Analytics and reporting",
@@ -148,10 +153,8 @@ const Projects = () => {
       company: "Nova Bank",
       description:
         "Built comprehensive visitor management system for improving office operations and security protocols.",
-      image: new URL("../assets/", import.meta.url).href,
-      images: [
-        new URL("../assets/", import.meta.url).href,
-      ],
+      image: fallbackImage,
+      images: [fallbackImage],
       technologies: [
         "React.js",
         "TypeScript",
@@ -192,7 +195,7 @@ const Projects = () => {
               Featured Projects
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-              A showcase of applications I've built, from banking platforms
+              A showcase of applications I've built, from banking platforms to ride-sharing websites, demonstrating my skills in frontend development and user experience design.
             </p>
           </motion.div>
 
@@ -210,14 +213,16 @@ const Projects = () => {
                 <Card className="gradient-card border-0 shadow-elegant hover-lift overflow-hidden lg:flex-1">
                   <CardContent className="p-0">
                     {/* Project Image */}
-                    <div 
+                    <div
                       className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden group"
                       onMouseEnter={() => {
                         if (project.images && project.images.length > 0) {
                           const interval = setInterval(() => {
                             setImageIndexes((prev) => ({
                               ...prev,
-                              [project.title]: ((prev[project.title] || 0) + 1) % project.images.length,
+                              [project.title]:
+                                ((prev[project.title] || 0) + 1) %
+                                project.images.length,
                             }));
                           }, 2000);
                           setImageIndexes((prev) => ({
@@ -227,7 +232,8 @@ const Projects = () => {
                         }
                       }}
                       onMouseLeave={() => {
-                        const interval = imageIndexes[`${project.title}-interval`];
+                        const interval =
+                          imageIndexes[`${project.title}-interval`];
                         if (interval) {
                           clearInterval(interval);
                           setImageIndexes((prev) => {
@@ -239,13 +245,16 @@ const Projects = () => {
                         }
                       }}
                     >
-                      <img 
+                      <img
                         src={
-                          project.images 
+                          project.images
                             ? project.images[imageIndexes[project.title] || 0]
                             : project.image
                         }
                         alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
                         className="w-full h-full object-cover transition-opacity duration-300"
                       />
                     </div>
