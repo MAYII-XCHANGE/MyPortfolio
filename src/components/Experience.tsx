@@ -100,7 +100,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-muted/30 to-background"
+      className="scroll-mt-16 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-muted/30 to-background"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div

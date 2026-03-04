@@ -95,7 +95,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-background to-muted/30"
+      className="scroll-mt-16 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-background to-muted/30"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div

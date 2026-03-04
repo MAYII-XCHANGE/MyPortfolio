@@ -10,7 +10,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
-    { id: "hero", label: "Home", href: "#" },
+    { id: "hero", label: "Home", href: "#hero" },
     { id: "about", label: "About", href: "#about" },
     { id: "projects", label: "Projects", href: "#projects" },
     { id: "experience", label: "Experience", href: "#experience" },
@@ -47,18 +47,25 @@ const Navigation = () => {
     });
   };
 
+  const scrollToSection = (href: string, retries = 12) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    // Some sections are lazy-loaded, so retry briefly until mounted.
+    if (retries > 0) {
+      window.setTimeout(() => scrollToSection(href, retries - 1), 120);
+    }
+  };
+
   const handleNavClick = (href: string, id: string) => {
     setActiveSection(id);
     setIsOpen(false);
 
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    window.history.replaceState(null, "", href);
+    window.requestAnimationFrame(() => scrollToSection(href));
   };
 
   return (
@@ -78,7 +85,7 @@ const Navigation = () => {
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="font-display font-bold text-xl text-gradient-primary cursor-pointer"
-            onClick={() => handleNavClick("#", "hero")}
+            onClick={() => handleNavClick("#hero", "hero")}
           >
             Application Developer
           </motion.div>

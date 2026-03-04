@@ -91,12 +91,17 @@ const About = () => {
       title: "User-Centered",
       description: "Delivering seamless and intuitive user experiences",
     },
+    {
+      icon: <Lightbulb className="w-8 h-8 text-primary" />,
+      title: "Problem Solving",
+      description: "Turning complex requirements into clear, practical solutions",
+    },
   ];
 
   return (
     <section
       id="about"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-background to-muted/30"
+      className="scroll-mt-16 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-background to-muted/30"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -129,9 +134,11 @@ const About = () => {
                       <img
                         src={mayOye}
                         alt="Mayowa Oyeniran"
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
-                        className="w-full h-full object-cover"
+                        fetchPriority="high"
+                        sizes="(min-width: 1024px) 280px, (min-width: 640px) 320px, 100vw"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                   </div>
@@ -157,7 +164,7 @@ const About = () => {
             <h3 className="text-xl sm:text-2xl font-display font-semibold mb-6 sm:mb-8 text-center">
               Core Values
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}

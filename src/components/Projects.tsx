@@ -49,7 +49,7 @@ const Projects = () => {
       company: "BexTech Engineering",
       description:
         "Developed a responsive ride-sharing platform website with clear service flows, fast page performance, and mobile-first UI to help users easily discover, book, and engage with FeyRide services.",
-      image: fallbackImage,
+      image: new URL("../assets/FeyRide_1.jpg", import.meta.url).href,
       images: [
         new URL("../assets/FeyRide_1.jpg", import.meta.url).href,
         new URL("../assets/FeyRide_2.jpg", import.meta.url).href,
@@ -177,7 +177,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-muted/30 to-background"
+      className="scroll-mt-16 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-muted/30 to-background"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -252,10 +252,11 @@ const Projects = () => {
                             : project.image
                         }
                         alt={project.title}
-                        loading="lazy"
+                        loading={index === 0 ? "eager" : "lazy"}
                         decoding="async"
-                        fetchPriority="low"
-                        className="w-full h-full object-cover transition-opacity duration-300"
+                        fetchPriority={index === 0 ? "high" : "auto"}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="w-full h-full object-contain bg-background/40 transition-opacity duration-300"
                       />
                     </div>
                   </CardContent>

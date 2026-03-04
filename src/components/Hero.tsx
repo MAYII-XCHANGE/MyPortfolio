@@ -37,8 +37,9 @@ const Hero = () => {
 
   return (
     <section
+      id="hero"
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen scroll-mt-16 flex items-center justify-center overflow-hidden"
       // style={{
       //   backgroundImage: `linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%), url(${heroImage})`,
       //   backgroundSize: "cover",
