@@ -71,7 +71,7 @@ const Contact = () => {
     {
       icon: <Linkedin className="w-6 h-6" />,
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/oyeniran-mayowa",
+      href: "https://www.linkedin.com/in/oyeniran-mayowa-a24592289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       color: "hover:bg-primary hover:text-primary-foreground",
     },
     {
