@@ -195,7 +195,7 @@ const Hero = () => {
               <Github className="w-6 h-6" />
             </motion.a>
             <motion.a
-              href="https://www.linkedin.com/in/oyeniran-mayowa-a24592289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+              href="https://www.linkedin.com/in/mayowa-oyeniran-a24592289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift"
